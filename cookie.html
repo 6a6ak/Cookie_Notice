@@ -7,30 +7,43 @@
     <style>
         #cookie-notice {
             position: fixed;
-            bottom: 0;
+            bottom: -100px;
             width: 100%;
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.9);
             color: white;
             text-align: center;
             padding: 15px;
             z-index: 1000;
-            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            transition: bottom 0.5s ease-in-out;
+        }
+        #cookie-notice.show {
+            bottom: 0;
+        }
+        #cookie-notice img {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
 
-<div id="cookie-notice">We are just using cookies.</div>
+<div id="cookie-notice">
+    <img src="cookie.png" alt="Cookie Icon" width="24" height="24">
+    We are just using cookies.
+</div>
 
 <script>
     window.onload = function() {
         if (!localStorage.getItem('cookieNoticeDisplayed')) {
             var cookieNotice = document.getElementById('cookie-notice');
-            cookieNotice.style.display = 'block';
+            cookieNotice.classList.add('show');
             setTimeout(function() {
-                cookieNotice.style.display = 'none';
+                cookieNotice.classList.remove('show');
                 localStorage.setItem('cookieNoticeDisplayed', 'true');
-            }, 3000);
+            }, 5000);
         }
     };
 </script>
