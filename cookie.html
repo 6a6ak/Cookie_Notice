@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Notification</title>
+    <style>
+        #cookie-notice {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="cookie-notice">We are just using cookies.</div>
+
+<script>
+    window.onload = function() {
+        if (!localStorage.getItem('cookieNoticeDisplayed')) {
+            var cookieNotice = document.getElementById('cookie-notice');
+            cookieNotice.style.display = 'block';
+            setTimeout(function() {
+                cookieNotice.style.display = 'none';
+                localStorage.setItem('cookieNoticeDisplayed', 'true');
+            }, 3000);
+        }
+    };
+</script>
+
+</body>
+</html>
